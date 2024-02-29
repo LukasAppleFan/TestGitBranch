@@ -2,26 +2,24 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Test Site PWA</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.json">
-    <script src="app.js"></script>
-
-    <!-- Add to Home Screen -->
-    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
-
-    <!-- Add favicon icon-192x192.png -->
-    <link rel="icon" href="icons/icon-192x192.png" type="image/png" sizes="192x192">
+    <title>PWA Example</title>
 </head>
 <body>
-
-    <h1>Test Site</h1>
-    <p>Test Site</p>
-    <p>This should be a PWA (Progressive Web App)</p>
-
-    <footer>
-        <p>Test Site</p>
-    </footer>
-
+<h1>Hello, PWA!</h1>
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+                // Registration was successful
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function(err) {
+                // registration failed :(
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+    }
+</script>
 </body>
 </html>
