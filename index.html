@@ -1,21 +1,42 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json">
+
+    <!-- Apple-specific configurations -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Example Progressive Web App">
+
+    <!-- Apple Icons -->
+    <link rel="apple-touch-icon" href="/icon/lowres.webp">
+    <link rel="apple-touch-icon" sizes="72x72" href="/icon/hd_hi.ico">
+    <link rel="apple-touch-icon" sizes="96x96" href="/icon/hd_hi.ico">
+    <link rel="apple-touch-icon" sizes="128x128" href="/icon/hd_hi.ico">
+    <link rel="apple-touch-icon" sizes="256x256" href="/icon/hd_hi.ico">
+
+    <!-- Splash Screen (Optional, you can add more for different resolutions) -->
+    <!-- For example, for iPhone X -->
+    <link href="/splashscreens/iphonexsplash.png" sizes="1125x2436" rel="apple-touch-startup-image">
+
+    <!-- Standard favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+
     <title>PWA Example</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <h1>Hello, PWA!</h1>
 <script>
     if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-                // Registration was successful
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js').then(registration => {
                 console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            }, function(err) {
-                // registration failed :(
+            }, err => {
                 console.log('ServiceWorker registration failed: ', err);
             });
         });
